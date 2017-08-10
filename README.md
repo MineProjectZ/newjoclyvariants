@@ -5,6 +5,7 @@ This Repository is to create new Chess Variants for Jocly together. We want to b
 
 every Variant gets his own Folder.
 The Folder structure should look like this:
+<pre>
 [variant name]
 ├──[variant name]-model.js
 ├──[variant name]-view.js
@@ -13,3 +14,4 @@ The Folder structure should look like this:
 ├──[variant name]-rules.html
 ├──[variant name]-thumb.png
 └──index.js
+</pre>
