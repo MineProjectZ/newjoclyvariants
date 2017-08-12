@@ -70,7 +70,7 @@
 					graph: this.cbKnightGraph(geometry),
 					value: 2.9,
 					abbrev: 'N',
-					initial: [{s:1,p:1},{s:1,p:6}],
+					initial: [{s:1,p:6},{s:-1,p:62}],
 				},
 				
 				5: {
@@ -79,7 +79,7 @@
 					graph: this.cbBishopGraph(geometry),
 					value: 3.1,
 					abbrev: 'B',
-					initial: [{s:1,p:2},{s:1,p:5}],
+					initial: [{s:1,p:2},{s:1,p:5},{s:-1,p:58},{s:-1,p:61}],
 				},
 
 				6: {
@@ -88,7 +88,7 @@
 					graph: this.cbRookGraph(geometry),
 					value: 5,
 					abbrev: 'R',
-					initial: [{s:1,p:0},{s:1,p:7}],
+					initial: [{s:1,p:0},{s:1,p:7}],{s:-1,p:56},{s:-1,p:63}],
 					castle: true,
 				},
 
@@ -98,7 +98,7 @@
 					graph: this.cbQueenGraph(geometry),
 	            	value: 8,
 	            	abbrev: 'A',
-	            	initial: [{s:1,p:3}],
+	            	initial: [{s:1,p:3},{s:-1,p:59}],
 	            },	
 				
 				8: {
@@ -108,48 +108,21 @@
 					graph: this.cbKingGraph(geometry),
 					abbrev: 'K',
 					initial: [{s:1,p:4},{s:-1,p:60}],
-				},
+                },
+                
 				9: {
-					name: 'chancellor',
-					aspect: 'fr-marshall',
-					graph: this.cbMergeGraphs(geometry,
-            			this.cbRookGraph(geometry),
-						this.cbKnightGraph(geometry)),
-					value: 5,
-					abbrev: 'Cc',
-					initial: [{s:-1,p:58},{s:-1,p:61}],
+					name: 'lion',
+					aspect: 'fr-lion',
+					graph: this.cbShortRangeGraph(geometry,[
+						[-1,-1],[-1,1],[1,-1],[1,1],[1,0],[0,1],[-1,0],[0,-1],
+						[-2,0],[-2,-1],[-2,-2],[-1,-2],[0,-2],
+						[1,-2],[2,-2],[2,-1],[2,0],[2,1],
+						[2,2],[1,2],[0,2],[-1,2],[-2,2],[-2,1]]),
+					value: 7.5,
+					abbrev: 'L',
+					initial: [{s:1,p:1},{s:-1,p:57}],
 				},
-				10: {
-					name: 'cardinal',
-					aspect: 'fr-cardinal',
-					graph: this.cbMergeGraphs(geometry,
-            			this.cbBishopGraph(geometry),
-						this.cbKnightGraph(geometry)),
-					value: 5,
-					abbrev: 'Ad',
-					initial: [{s:-1,p:59}],
-					castle: true,
-				},
-				11: {
-				name : 'elephant',
-				abbrev : 'E',
-				aspect : 'fr-elephant',
-				graph : this.cbShortRangeGraph(geometry,[[-1,-1],[-1,1],[1,-1],[1,1],[-2,-2],[-2,2],[2,-2],[2,2]],),
-				value : 2,
-				initial: [{s:-1,p:57},{s:-1,p:62}],
-				},
-				      12: {
-      name : 'crownedrook',
-      abbrev : 'Ib',
-      aspect : 'fr-crowned-rook',
-      graph : this.cbMergeGraphs(geometry,
-            			this.cbBishopGraph(geometry),
-						this.cbShortRangeGraph(geometry,[[-1,0],[-2,0],[1,0],[2,0],[0,1],[0,2],[0,-1],[0,-2]])),
-      value : 2.2,
-      initial: [{s:-1,p:56},{s:-1,p:63}],
-      },
 
-				
 			},
 			
 			promote: function(aGame,piece,move) {
@@ -167,6 +140,8 @@
 			castle: {
 				"4/0": {k:[3,2],r:[1,2,3],n:"O-O-O"},
 				"4/7": {k:[5,6],r:[6,5],n:"O-O"},
+				"60/56": {k:[59,58],r:[57,58,59],n:"O-O-O"},
+				"60/63": {k:[61,62],r:[62,61],n:"O-O"},
 			},
 			
 		};
