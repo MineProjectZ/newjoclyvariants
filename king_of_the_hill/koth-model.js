@@ -11,7 +11,7 @@
  
 
 (function() {
-	
+
 	var geometry = Model.Game.cbBoardGeometryGrid(8,8);
 	
 	Model.Game.cbDefine = function() {
@@ -102,21 +102,12 @@
 	            },	
 				
 				8: {
-					name: 'kingw',
+					name: 'king',
 					aspect: 'fr-king',
 					isKing: true,
 					graph: this.cbKingGraph(geometry),
 					abbrev: 'K',
-					initial: [{s:1,p:4}],
-				},
-
-				9: {
-					name: 'kingb',
-					aspect: 'fr-king',
-					isKing: true,
-					graph: this.cbKingGraph(geometry),
-					abbrev: 'K',
-					initial: [{s:-1,p:60}],
+					initial: [{s:1,p:4},{s:-1,p:60}],
 				},
 				
 			},
@@ -139,50 +130,46 @@
 				"60/56": {k:[59,58],r:[57,58,59],n:"O-O-O"},
 				"60/63": {k:[61,62],r:[62,61],n:"O-O"},
 			},
+
+			evaluate: function(aGame,evalValues,material) {
+				
+								if(this.kings[1]==27 && this.pieces[this.board[27]].t==8) {
+									this.mFinished=true;
+									this.mWinner=JocGame.PLAYER_A;
+								}
+								if(this.kings[-1]==27 && this.pieces[this.board[27]].t==8) {
+									this.mFinished=true;
+									this.mWinner=JocGame.PLAYER_B;
+								}
+								if(this.kings[1]==28 && this.pieces[this.board[28]].t==8) {
+									this.mFinished=true;
+									this.mWinner=JocGame.PLAYER_A;
+								}
+								if(this.kings[-1]==28 && this.pieces[this.board[28]].t==8) {
+									this.mFinished=true;
+									this.mWinner=JocGame.PLAYER_B;
+								}
+								if(this.kings[1]==35 && this.pieces[this.board[35]].t==8) {
+									this.mFinished=true;
+									this.mWinner=JocGame.PLAYER_A;
+								}
+								if(this.kings[-1]==35 && this.pieces[this.board[35]].t==8) {
+									this.mFinished=true;
+									this.mWinner=JocGame.PLAYER_B;
+								}
+								if(this.kings[1]==36 && this.pieces[this.board[36]].t==8) {
+									this.mFinished=true;
+									this.mWinner=JocGame.PLAYER_A;
+								}
+								if(this.kings[-1]==36 && this.pieces[this.board[36]].t==8) {
+									this.mFinished=true;
+									this.mWinner=JocGame.PLAYER_B;
+								}
+								
+							
+			},
 			
 		};
-	},
-	Model.Board.Evaluate = function(aGame,piece,move) {
-		if(piece.t==8 && geometry.R(move.t)==3 && geometry.C(3)) {
-			this.mFinished=true;
-			this.mWinner=1;
-			return;
-		}
-		if(piece.t==8 && geometry.R(move.t)==3 && geometry.C(4)) {
-			this.mFinished=true;
-			this.mWinner=1;
-			return;
-		}
-		if(piece.t==8 && geometry.R(move.t)==4 && geometry.C(3)) {
-			this.mFinished=true;
-			this.mWinner=1;
-			return;
-		}
-		if(piece.t==8 && geometry.R(move.t)==4 && geometry.C(4)) {
-			this.mFinished=true;
-			this.mWinner=1;
-			return;
-		}
-		if(piece.t==9 && geometry.R(move.t)==3 && geometry.C(3)) {
-			this.mFinished=true;
-			this.mWinner=1;
-			return;
-		}
-		if(piece.t==9 && geometry.R(move.t)==3 && geometry.C(4)) {
-			this.mFinished=true;
-			this.mWinner=1;
-			return;
-		}
-		if(piece.t==9 && geometry.R(move.t)==4 && geometry.C(3)) {
-			this.mFinished=true;
-			this.mWinner=1;
-			return;
-		}
-		if(piece.t==9 && geometry.R(move.t)==4 && geometry.C(4)) {
-			this.mFinished=true;
-			this.mWinner=1;
-			return;
-		}
 	}
 			
 })();
